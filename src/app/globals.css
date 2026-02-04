@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Colors */
+  --color-gold-primary: #D4AF37;
+  --color-gold-light: #F9E498;
+  --color-gold-dark: #8a6c1d;
+  --color-obsidian: #050505;
+  --color-card: #0f0f0f;
+  
+  /* Fonts */
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+/* --- CUSTOM UTILITIES & ANIMATIONS --- */
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(to right, var(--color-gold-primary), var(--color-gold-light));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+  }
+
+  /* Hide default cursor when custom one is active */
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Keyframes Definition */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slowSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0; /* Start hidden */
+}
+
+.animate-slow-spin {
+  animation: slowSpin 20s linear infinite;
+}
+
+/* Staggered Delays for grid items */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+
+body {
+  background-color: var(--color-obsidian);
+  color: #e5e5e5;
+  overflow-x: hidden; /* Prevent scrollbar flash during entry */
+}
